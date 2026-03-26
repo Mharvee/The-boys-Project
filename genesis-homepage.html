@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Genesis Initiative</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root { --black: #0a0a0a; --white: #ffffff; --gray: #f4f4f2; --mid-gray: #888; --border: #e0e0e0; }
+  body { font-family: 'DM Sans', sans-serif; color: var(--black); background: var(--white); overflow-x: hidden; }
+
+  /* HERO */
+  .hero { min-height: 92vh; background: var(--black); display: flex; flex-direction: column; justify-content: center; padding: 80px; position: relative; overflow: hidden; }
+  .hero::before { content: ''; position: absolute; inset: 0; background: url('https://images.unsplash.com/photo-1529390079861-591de354faf5?w=1600&q=80') center/cover no-repeat; opacity: 0.18; }
+  .hero-tag { font-size: 12px; font-weight: 600; letter-spacing: 4px; text-transform: uppercase; color: var(--mid-gray); margin-bottom: 32px; position: relative; display: flex; align-items: center; gap: 12px; animation: fadeUp 0.8s ease both; }
+  .hero-tag::before { content: ''; width: 40px; height: 1px; background: var(--mid-gray); }
+  .hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(48px, 7vw, 96px); font-weight: 900; color: var(--white); line-height: 1.0; max-width: 900px; position: relative; animation: fadeUp 0.8s 0.2s ease both; }
+  .hero h1 em { font-style: italic; color: #ccc; }
+  .hero-sub { font-size: 18px; font-weight: 300; color: #aaa; max-width: 560px; line-height: 1.7; margin-top: 32px; position: relative; animation: fadeUp 0.8s 0.4s ease both; }
+  .hero-actions { display: flex; gap: 16px; margin-top: 48px; position: relative; animation: fadeUp 0.8s 0.6s ease both; flex-wrap: wrap; align-items: flex-start; }
+  .btn-primary { background: var(--white); color: var(--black); padding: 16px 36px; font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; border: none; cursor: pointer; text-decoration: none; display: inline-block; transition: all 0.3s ease; }
+  .btn-primary:hover { background: #e0e0e0; }
+  .btn-outline { background: transparent; color: var(--white); padding: 16px 36px; font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; border: 1px solid rgba(255,255,255,0.3); cursor: pointer; text-decoration: none; display: inline-block; transition: all 0.3s ease; }
+  .btn-outline:hover { border-color: var(--white); }
+  .btn-dark { background: var(--black); color: var(--white); padding: 16px 36px; font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; border: none; cursor: pointer; text-decoration: none; display: inline-block; transition: all 0.3s ease; margin-top: 16px; }
+  .btn-dark:hover { background: #333; }
+
+  /* JOIN DROPDOWN */
+  .hero-join { position: relative; }
+  .hero-join-dropdown { position: absolute; top: calc(100% + 8px); left: 0; background: var(--white); min-width: 200px; box-shadow: 0 8px 32px rgba(0,0,0,0.15); opacity: 0; pointer-events: none; transform: translateY(8px); transition: all 0.25s ease; z-index: 10; }
+  .hero-join:hover .hero-join-dropdown { opacity: 1; pointer-events: all; transform: translateY(0); }
+  .hero-join-dropdown a { display: block; padding: 14px 20px; font-size: 13px; font-weight: 500; color: var(--black); text-decoration: none; border-bottom: 1px solid var(--border); transition: background 0.2s; }
+  .hero-join-dropdown a:last-child { border-bottom: none; }
+  .hero-join-dropdown a:hover { background: var(--gray); }
+
+  .hero-scroll { position: absolute; bottom: 48px; left: 80px; display: flex; align-items: center; gap: 12px; color: var(--mid-gray); font-size: 12px; letter-spacing: 2px; text-transform: uppercase; animation: fadeUp 0.8s 0.8s ease both; }
+  .scroll-line { width: 48px; height: 1px; background: var(--mid-gray); position: relative; overflow: hidden; }
+  .scroll-line::after { content: ''; position: absolute; left: -100%; top: 0; width: 100%; height: 100%; background: white; animation: scrollLine 2s 1s ease infinite; }
+
+  /* STATS */
+  .mission-strip { background: var(--black); padding: 60px 80px; display: grid; grid-template-columns: 1fr 2px 1fr 2px 1fr; border-top: 1px solid #222; }
+  .mission-divider { background: #333; }
+  .mission-item { padding: 0 48px; text-align: center; }
+  .mission-item:first-child { padding-left: 0; }
+  .mission-item:last-child { padding-right: 0; }
+  .mission-num { font-family: 'Playfair Display', serif; font-size: 48px; font-weight: 700; color: var(--white); line-height: 1; }
+  .mission-label { font-size: 13px; color: var(--mid-gray); margin-top: 8px; letter-spacing: 1px; text-transform: uppercase; }
+
+  /* ABOUT */
+  .about { padding: 120px 80px; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+  .section-tag { font-size: 11px; font-weight: 600; letter-spacing: 4px; text-transform: uppercase; color: var(--mid-gray); margin-bottom: 24px; display: flex; align-items: center; gap: 12px; }
+  .section-tag::before { content: ''; width: 32px; height: 1px; background: var(--mid-gray); }
+  .about h2 { font-family: 'Playfair Display', serif; font-size: clamp(36px, 4vw, 56px); font-weight: 700; line-height: 1.15; margin-bottom: 24px; }
+  .about p { font-size: 16px; line-height: 1.8; color: #444; margin-bottom: 16px; }
+  .about-image { position: relative; height: 520px; }
+  .about-image img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .about-image-badge { position: absolute; bottom: -24px; left: -24px; background: var(--black); color: var(--white); padding: 32px; width: 200px; }
+  .about-image-badge .big-num { font-family: 'Playfair Display', serif; font-size: 48px; font-weight: 700; line-height: 1; }
+  .about-image-badge .big-label { font-size: 12px; color: #888; margin-top: 4px; line-height: 1.4; }
+
+  /* PROGRAMS */
+  .programs { background: var(--gray); padding: 120px 80px; }
+  .programs-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 64px; }
+  .programs h2 { font-family: 'Playfair Display', serif; font-size: clamp(36px, 4vw, 52px); font-weight: 700; max-width: 480px; line-height: 1.15; }
+  .programs-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; }
+  .program-card { background: var(--white); padding: 48px 40px; transition: all 0.3s ease; position: relative; overflow: hidden; }
+  .program-card::before { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 3px; background: var(--black); transition: width 0.4s ease; }
+  .program-card:hover::before { width: 100%; }
+  .program-card:hover { transform: translateY(-4px); box-shadow: 0 20px 60px rgba(0,0,0,0.08); }
+  .program-icon { font-size: 32px; margin-bottom: 24px; display: block; }
+  .program-card h3 { font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 700; margin-bottom: 16px; line-height: 1.3; }
+  .program-card p { font-size: 14px; line-height: 1.7; color: #666; }
+  .program-link { display: inline-flex; align-items: center; gap: 8px; margin-top: 24px; font-size: 12px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; color: var(--black); text-decoration: none; transition: gap 0.3s ease; }
+  .program-link:hover { gap: 16px; }
+
+  /* VISION/MISSION */
+  .vision-mission { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; }
+  .vm-card { padding: 80px 64px; }
+  .vm-card:first-child { background: var(--black); color: var(--white); }
+  .vm-card:last-child { background: var(--gray); }
+  .vm-label { font-size: 11px; letter-spacing: 4px; text-transform: uppercase; margin-bottom: 32px; opacity: 0.5; }
+  .vm-card h3 { font-family: 'Playfair Display', serif; font-size: clamp(24px, 3vw, 36px); font-weight: 700; line-height: 1.3; }
+
+  /* FOCUS */
+  .focus { padding: 120px 80px; }
+  .focus h2 { font-family: 'Playfair Display', serif; font-size: clamp(36px, 4vw, 52px); font-weight: 700; line-height: 1.15; max-width: 480px; margin-bottom: 64px; }
+  .focus-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2px; }
+  .focus-item { padding: 40px; border: 1px solid var(--border); display: flex; align-items: flex-start; gap: 24px; transition: background 0.3s ease; }
+  .focus-item:hover { background: var(--gray); }
+  .focus-num { font-family: 'Playfair Display', serif; font-size: 48px; font-weight: 700; color: #e8e8e8; line-height: 1; flex-shrink: 0; width: 60px; }
+  .focus-content h4 { font-size: 18px; font-weight: 600; margin-bottom: 8px; }
+  .focus-content p { font-size: 14px; color: #666; line-height: 1.6; }
+
+  /* JOIN */
+  .join { background: var(--black); padding: 120px 80px; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+  .join h2 { font-family: 'Playfair Display', serif; font-size: clamp(36px, 4vw, 56px); font-weight: 700; color: var(--white); line-height: 1.15; margin-bottom: 24px; }
+  .join > div:first-child p { color: #888; font-size: 16px; line-height: 1.8; }
+  .join-cards { display: flex; flex-direction: column; gap: 2px; }
+  .join-card { background: #111; padding: 40px; text-decoration: none; display: block; border-left: 3px solid #222; transition: all 0.3s ease; }
+  .join-card:hover { background: #1a1a1a; border-left-color: var(--white); }
+  .join-card-arrow { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
+  .join-card h4 { font-size: 18px; font-weight: 600; color: var(--white); }
+  .join-card span { color: #555; font-size: 20px; transition: color 0.3s, transform 0.3s; display: inline-block; }
+  .join-card:hover span { color: var(--white); transform: translateX(4px); }
+  .join-card p { font-size: 14px; color: #666; line-height: 1.6; }
+
+  /* CTA */
+  .cta { padding: 120px 80px; text-align: center; background: var(--gray); position: relative; overflow: hidden; }
+  .cta::before { content: 'GENESIS'; position: absolute; font-family: 'Playfair Display', serif; font-size: 20vw; font-weight: 900; color: rgba(0,0,0,0.04); top: 50%; left: 50%; transform: translate(-50%, -50%); white-space: nowrap; pointer-events: none; }
+  .cta h2 { font-family: 'Playfair Display', serif; font-size: clamp(36px, 5vw, 64px); font-weight: 700; max-width: 700px; margin: 0 auto 24px; line-height: 1.15; position: relative; }
+  .cta p { color: #666; font-size: 17px; max-width: 480px; margin: 0 auto 48px; line-height: 1.7; position: relative; }
+  .cta-actions { display: flex; gap: 16px; justify-content: center; position: relative; flex-wrap: wrap; }
+
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+  @keyframes scrollLine { 0% { left: -100%; } 100% { left: 100%; } }
+
+  @media (max-width: 900px) {
+    .hero, .cta, .focus, .programs { padding: 80px 24px; }
+    .hero-scroll { left: 24px; }
+    .mission-strip { grid-template-columns: 1fr; gap: 32px; padding: 48px 24px; }
+    .mission-divider { display: none; }
+    .mission-item { padding: 0; }
+    .about, .join { grid-template-columns: 1fr; padding: 80px 24px; gap: 48px; }
+    .programs-grid, .focus-grid { grid-template-columns: 1fr; }
+    .programs-header { flex-direction: column; align-items: flex-start; gap: 24px; }
+    .vision-mission { grid-template-columns: 1fr; }
+    .vm-card { padding: 64px 24px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-tag">The Genesis Initiative</div>
+  <h1>Shaping Boys Into <em>Men of Character</em></h1>
+  <p class="hero-sub">Connecting boys aged 10–25 with positive male role models who inspire, guide, and equip the next generation to thrive.</p>
+  <div class="hero-actions">
+    <a href="#programs" class="btn-primary">Our Programs</a>
+    <div class="hero-join">
+      <a href="#join" class="btn-outline">Join Our Team ▾</a>
+      <div class="hero-join-dropdown">
+        <a href="#mentor">Become a Mentor</a>
+        <a href="#volunteer">Become a Volunteer</a>
+      </div>
+    </div>
+  </div>
+  <div class="hero-scroll"><div class="scroll-line"></div>Scroll to explore</div>
+</section>
+
+<!-- STATS -->
+<section class="mission-strip">
+  <div class="mission-item"><div class="mission-num">10–25</div><div class="mission-label">Age Range Served</div></div>
+  <div class="mission-divider"></div>
+  <div class="mission-item"><div class="mission-num">6</div><div class="mission-label">Core Focus Areas</div></div>
+  <div class="mission-divider"></div>
+  <div class="mission-item"><div class="mission-num">1:1</div><div class="mission-label">Mentoring Model</div></div>
+</section>
+
+<!-- ABOUT -->
+<section class="about">
+  <div>
+    <div class="section-tag">Who We Are</div>
+    <h2>A mentorship initiative built for this generation</h2>
+    <p>Too many boys are growing up without positive male role models. The Genesis Initiative exists to change that — pairing boys with mentors who act as a guiding "North Star," inspiring them to discover their identity and fulfill their purpose.</p>
+    <p>Through a structured curriculum covering character, entrepreneurship, emotional intelligence, and more, we help boys grow into confident, purpose-driven men who contribute meaningfully to society.</p>
+    <a href="#about" class="btn-dark">Learn More</a>
+  </div>
+  <div class="about-image">
+    <img src="https://images.unsplash.com/photo-1547082299-de196ea013d6?w=800&q=80" alt="Mentor and mentee">
+    <div class="about-image-badge">
+      <div class="big-num">10+</div>
+      <div class="big-label">Curriculum modules designed for growth</div>
+    </div>
+  </div>
+</section>
+
+<!-- PROGRAMS -->
+<section class="programs" id="programs">
+  <div class="programs-header">
+    <div><div class="section-tag">What We Do</div><h2>Two Pathways, One Purpose</h2></div>
+    <a href="#programs" class="btn-dark">View All Programs</a>
+  </div>
+  <div class="programs-grid">
+    <div class="program-card"><span class="program-icon">🎯</span><h3>One-on-One Mentoring</h3><p>Personalized mentorship pairing each boy with a dedicated mentor who guides them through life's challenges and helps them discover their potential.</p><a href="#" class="program-link">Explore →</a></div>
+    <div class="program-card"><span class="program-icon">💡</span><h3>Entrepreneurship & Innovation</h3><p>Teaching boys to generate ideas, pitch with confidence, find investors, and turn vision into reality — from startup to impact.</p><a href="#" class="program-link">Explore →</a></div>
+    <div class="program-card"><span class="program-icon">🧠</span><h3>Emotional Intelligence</h3><p>Equipping boys with self-awareness, empathy, and social skills to navigate relationships, handle feedback, and lead with emotional maturity.</p><a href="#" class="program-link">Explore →</a></div>
+    <div class="program-card"><span class="program-icon">⚙️</span><h3>Technology & Innovation</h3><p>From coding to AI, boys learn to leverage technology to solve real-world problems and lead in an increasingly digital society.</p><a href="#" class="program-link">Explore →</a></div>
+    <div class="program-card"><span class="program-icon">🌿</span><h3>Character Development</h3><p>Building the ethical foundation every man needs — integrity, respect, accountability, and the values that shape how they treat others.</p><a href="#" class="program-link">Explore →</a></div>
+    <div class="program-card"><span class="program-icon">🏛️</span><h3>Spirituality & Identity</h3><p>Helping boys understand their origin, their identity, and their role — grounding them in faith, purpose, and the confidence to lead.</p><a href="#" class="program-link">Explore →</a></div>
+  </div>
+</section>
+
+<!-- VISION / MISSION -->
+<section class="vision-mission">
+  <div class="vm-card"><div class="vm-label">Our Vision</div><h3>To inspire boys to uncover their true identity and fulfill their purpose.</h3></div>
+  <div class="vm-card"><div class="vm-label">Our Mission</div><h3>To cultivate boys into men of character who positively influence society and raise future generations of strong, responsible men.</h3></div>
+</section>
+
+<!-- FOCUS AREAS -->
+<section class="focus" id="focus">
+  <div class="section-tag">Focus Areas</div>
+  <h2>Everything a young man needs to thrive</h2>
+  <div class="focus-grid">
+    <div class="focus-item"><div class="focus-num">01</div><div class="focus-content"><h4>Character Development</h4><p>Bullying, leadership, empathy, values, ethics, morality, respect and responsibility.</p></div></div>
+    <div class="focus-item"><div class="focus-num">02</div><div class="focus-content"><h4>Entrepreneurship</h4><p>Business ideation, pitching, finding investors, startup growth, and learning from failure.</p></div></div>
+    <div class="focus-item"><div class="focus-num">03</div><div class="focus-content"><h4>Emotional Intelligence</h4><p>Self-awareness, empathy, social skills, problem solving, and handling feedback.</p></div></div>
+    <div class="focus-item"><div class="focus-num">04</div><div class="focus-content"><h4>Family, Relationships & Health</h4><p>Sex & puberty, mental health, understanding gender, relationships, and addiction.</p></div></div>
+    <div class="focus-item"><div class="focus-num">05</div><div class="focus-content"><h4>Technology & Innovation</h4><p>Coding, product development, AI, data analytics, and using tech to solve societal problems.</p></div></div>
+    <div class="focus-item"><div class="focus-num">06</div><div class="focus-content"><h4>Politics & Governance</h4><p>Human rights, civic duties, understanding government, leadership, and international relations.</p></div></div>
+  </div>
+</section>
+
+<!-- JOIN OUR TEAM -->
+<section class="join" id="join">
+  <div>
+    <div class="section-tag" style="color:#555;">Join Our Team</div>
+    <h2>Be a North Star for the next generation</h2>
+    <p>Every boy deserves a mentor who believes in him. Whether you give your time as a mentor or support us as a volunteer, your contribution shapes lives and transforms communities.</p>
+  </div>
+  <div class="join-cards">
+    <a href="#mentor" class="join-card">
+      <div class="join-card-arrow"><h4>Become a Mentor</h4><span>→</span></div>
+      <p>Commit to a one-on-one relationship with a boy, guiding him through our structured curriculum and life's journey.</p>
+    </a>
+    <a href="#volunteer" class="join-card">
+      <div class="join-card-arrow"><h4>Become a Volunteer</h4><span>→</span></div>
+      <p>Support our programs, events, and community outreach — making a difference in ways that suit your skills.</p>
+    </a>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta">
+  <div class="section-tag" style="justify-content:center;">Support Our Mission</div>
+  <h2>Help us shape the next generation of men</h2>
+  <p>Your donation directly funds mentorship programs, curriculum development, and the resources boys need to thrive.</p>
+  <div class="cta-actions">
+    <a href="#donate" class="btn-dark">Donate Now</a>
+    <a href="#contact" class="btn-dark" style="background:#333;">Contact Us</a>
+  </div>
+</section>
+
+</body>
+</html>
