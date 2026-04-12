@@ -152,7 +152,7 @@
   .program-card p { font-size: 14px; line-height: 1.7; color: #666; }
   .program-card ul { margin-top: 16px; list-style: none; }
   .program-card ul li { font-size: 13px; color: #777; padding: 5px 0; border-bottom: 1px solid #f0f0f0; display: flex; align-items: center; gap: 8px; }
-  .program-card ul li::before { content: '—'; color: var(--accent); font-weight: 700; font-size: 11px; }
+.program-card ul li::before { content: '→'; color: var(--accent); font-weight: 700; font-size: 11px; }
 
   /* Focus */
   .focus { padding: 120px 80px; }
@@ -447,7 +447,7 @@
   <section class="hero">
     <div class="hero-tag">The Genesis Initiative</div>
     <h1>Shaping Boys Into <em>Men of Character</em></h1>
-    <p class="hero-sub">Connecting boys aged 10–25 with positive male role models who inspire, guide, and equip the next generation to thrive — in their families, workplaces, communities, and culture.</p>
+    <p class="hero-sub">Connecting boys aged 10–16 with positive male role models who inspire, guide, and equip the next generation to thrive — in their families, workplaces, communities, and culture.</p>
     <div class="hero-actions">
       <span class="btn-dark" onclick="showPage('about')" style="cursor:pointer;">Our Story</span>
       <div class="hero-join">
@@ -462,27 +462,20 @@
   </section>
 
   <section class="mission-strip">
-    <div class="mission-item"><div class="mission-num">10–25</div><div class="mission-label">Age Range Served</div></div>
+    <div class="mission-item"><div class="mission-num">10–16</div><div class="mission-label">Age Range Served</div></div>
     <div class="mission-divider"></div>
     <div class="mission-item"><div class="mission-num">5</div><div class="mission-label">Curriculum Modules</div></div>
     <div class="mission-divider"></div>
     <div class="mission-item"><div class="mission-num">1:1</div><div class="mission-label">Mentoring Model</div></div>
   </section>
 
-  <section class="home-about">
-    <div>
+  <section class="home-about" style="display: flex; flex-direction: column; align-items: center; text-align: center; padding: 120px 80px;">
+    <div style="max-width: 700px;">
       <div class="section-tag">Who We Are</div>
       <h2>A mentorship initiative built for this generation</h2>
-      <p>Too many boys are growing up without positive male role models. The Genesis Initiative exists to change that — recognising the vital role boys play in shaping the future and providing the essential guidance they need to thrive.</p>
+      <p>Too many boys are growing up without positive male role models. The Genesis Initiative exists to change that recognising the vital role boys play in shaping the future and providing the essential guidance they need to thrive.</p>
       <p>Through lessons on self-esteem, leadership, purpose, emotional intelligence, relationships, and more, Project Genesis shapes boys into well-rounded, confident, and responsible men who can impact their families, workplaces, communities, and culture.</p>
       <span class="btn-dark" onclick="showPage('about')" style="cursor:pointer;margin-top:8px;display:inline-block;">Learn More</span>
-    </div>
-    <div class="home-about-image">
-      <img src="https://images.unsplash.com/photo-1547082299-de196ea013d6?w=800&q=80" alt="Mentor and mentee">
-      <div class="about-image-badge">
-        <div class="big-num">5</div>
-        <div class="big-label">Curriculum modules designed for growth</div>
-      </div>
     </div>
   </section>
 
@@ -551,7 +544,7 @@
         <span class="program-icon">⚽</span>
         <h3>Strategy, Discipline &amp; Team Dynamics</h3>
         <div class="prog-subtitle">The Tactical Man</div>
-        <p>Using football as a laboratory for real-world success — teaching that individual talent is secondary to collective vision and disciplined execution.</p>
+        <p>Using football as a laboratory for real-world success teaching that individual talent is secondary to collective vision and disciplined execution.</p>
         <ul>
           <li>The Power of Position</li>
           <li>Tactical Discipline</li>
@@ -594,7 +587,7 @@
       </div>
       <div class="join-card" onclick="showPage('join'); switchTab('volunteer')">
         <div class="join-card-arrow"><h4>Become a Volunteer</h4><span>→</span></div>
-        <p>Support our programmes, events, and community outreach — making a meaningful difference in ways that suit your unique skills.</p>
+        <p>Support our programmes, events, and community outreach making a meaningful difference in ways that suit your unique skills.</p>
       </div>
     </div>
   </section>
@@ -604,16 +597,16 @@
     <h2>Help us shape the next generation of men</h2>
     <p>Your support directly funds mentorship programmes, curriculum development, and the resources boys need to become the men they're meant to be.</p>
     <div class="cta-actions">
-      <span class="btn-dark" onclick="showToast('Thank you for your interest in donating!')" style="cursor:pointer;">Donate Now</span>
+      <span class="btn-dark" onclick="window.open('https://docs.google.com/forms/d/e/1FAIpQLScvZETuo-mpBEHc5RxDTjtEBRSAVmr8i9Lum-8nQpTovciDQA/viewform?usp=preview', '_blank');" style="cursor:pointer;">Donate Now</span>
       <span class="btn-dark" onclick="showPage('contact')" style="background:#333;cursor:pointer;">Contact Us</span>
     </div>
   </section>
 
   <footer>
     <div class="footer-grid">
-      <div class="footer-brand"><div class="logo">The <span>Genesis</span> Initiative</div><p>Connecting boys aged 10–25 with positive male role models who inspire, guide, and equip the next generation to thrive.</p><div class="footer-social"><a>in</a><a>tw</a><a>ig</a><a>fb</a></div></div>
+      <div class="footer-brand"><div class="logo">The <span>Genesis</span> Initiative</div><p>Connecting boys aged 10–16 with positive male role models who inspire, guide, and equip the next generation to thrive.</p><div class="footer-social"><a>in</a><a>tw</a><a>ig</a><a>fb</a></div></div>
       <div class="footer-col"><h5>Navigate</h5><a onclick="showPage('home')">Home</a><a onclick="showPage('about')">About Us</a><a onclick="showPage('blog')">Blog</a><a onclick="showPage('newsletter')">Newsletter</a></div>
-      <div class="footer-col"><h5>Get Involved</h5><a onclick="showPage('join'); switchTab('mentor')">Become a Mentor</a><a onclick="showPage('join'); switchTab('volunteer')">Volunteer</a><a onclick="showToast('Thank you for your interest!')">Donate</a><a onclick="showPage('contact')">Partner With Us</a></div>
+      <a onclick="window.open('https://docs.google.com/forms/d/e/1FAIpQLScvZETuo-mpBEHc5RxDTjtEBRSAVmr8i9Lum-8nQpTovciDQA/viewform?usp=preview', '_blank');">Donate</a>
       <div class="footer-col"><h5>Contact</h5><a onclick="showPage('contact')">Get In Touch</a><a>Lagos, Nigeria</a><a>hello@genesisinitiative.org</a></div>
     </div>
     <div class="footer-bottom"><p>© 2025 The Genesis Initiative. All rights reserved.</p><div class="footer-bottom-links"><a>Privacy Policy</a><a>Terms of Service</a></div></div>
@@ -646,7 +639,7 @@
       <p>The Genesis Initiative was designed in response to the growing lack of positive male role models in society. We recognised the vital role boys play in shaping the future — and the crisis created when they are left to navigate it alone.</p>
       <blockquote>"The most dangerous thing in society is a young man without a purpose."</blockquote>
       <p>Through lessons on self-esteem, leadership, purpose, emotional intelligence, relationships, and more, Project Genesis shapes boys into well-rounded, confident, and responsible men. Men who can impact their families, workplaces, communities, and culture.</p>
-      <p>Boys aged 10–25 are paired with mentors who act as guiding North Stars — helping them navigate life and discover their potential through a structured, five-pillar curriculum.</p>
+      <p>Boys aged 10–16 are paired with mentors who act as guiding North Stars — helping them navigate life and discover their potential through a structured, five-pillar curriculum.</p>
       <span class="btn-dark" onclick="showPage('join')" style="cursor:pointer;display:inline-block;margin-top:8px;">Get Involved</span>
     </div>
     <div class="about-img-stack">
@@ -733,7 +726,7 @@
         <div class="curr-num">MODULE 05</div>
         <h3>Strategy, Discipline &amp; Team Dynamics</h3>
         <div class="curr-sub">The Tactical Man</div>
-        <p>Using football as a laboratory for real-world success — teaching that individual talent is secondary to collective vision and disciplined execution.</p>
+        <p>Using football as a laboratory for real-world success teaching that individual talent is secondary to collective vision and disciplined execution.</p>
         <ul>
           <li>The Power of Position</li>
           <li>The Rule of Law</li>
@@ -764,7 +757,7 @@
 
   <footer>
     <div class="footer-grid">
-      <div class="footer-brand"><div class="logo">The <span>Genesis</span> Initiative</div><p>Connecting boys aged 10–25 with positive male role models who inspire, guide, and equip the next generation to thrive.</p><div class="footer-social"><a>in</a><a>tw</a><a>ig</a><a>fb</a></div></div>
+      <div class="footer-brand"><div class="logo">The <span>Genesis</span> Initiative</div><p>Connecting boys aged 10–16 with positive male role models who inspire, guide, and equip the next generation to thrive.</p><div class="footer-social"><a>in</a><a>tw</a><a>ig</a><a>fb</a></div></div>
       <div class="footer-col"><h5>Navigate</h5><a onclick="showPage('home')">Home</a><a onclick="showPage('about')">About Us</a><a onclick="showPage('blog')">Blog</a><a onclick="showPage('newsletter')">Newsletter</a></div>
       <div class="footer-col"><h5>Get Involved</h5><a onclick="showPage('join'); switchTab('mentor')">Become a Mentor</a><a onclick="showPage('join'); switchTab('volunteer')">Volunteer</a><a onclick="showToast('Thank you!')">Donate</a><a onclick="showPage('contact')">Partner With Us</a></div>
       <div class="footer-col"><h5>Contact</h5><a onclick="showPage('contact')">Get In Touch</a><a>Lagos, Nigeria</a><a>hello@genesisinitiative.org</a></div>
@@ -839,7 +832,7 @@
 
   <footer>
     <div class="footer-grid">
-      <div class="footer-brand"><div class="logo">The <span>Genesis</span> Initiative</div><p>Connecting boys aged 10–25 with positive male role models who inspire, guide, and equip the next generation to thrive.</p><div class="footer-social"><a>in</a><a>tw</a><a>ig</a><a>fb</a></div></div>
+      <div class="footer-brand"><div class="logo">The <span>Genesis</span> Initiative</div><p>Connecting boys aged 10–16 with positive male role models who inspire, guide, and equip the next generation to thrive.</p><div class="footer-social"><a>in</a><a>tw</a><a>ig</a><a>fb</a></div></div>
       <div class="footer-col"><h5>Navigate</h5><a onclick="showPage('home')">Home</a><a onclick="showPage('about')">About Us</a><a onclick="showPage('blog')">Blog</a><a onclick="showPage('newsletter')">Newsletter</a></div>
       <div class="footer-col"><h5>Get Involved</h5><a onclick="showPage('join'); switchTab('mentor')">Become a Mentor</a><a onclick="showPage('join'); switchTab('volunteer')">Volunteer</a><a onclick="showToast('Thank you!')">Donate</a><a onclick="showPage('contact')">Partner With Us</a></div>
       <div class="footer-col"><h5>Contact</h5><a onclick="showPage('contact')">Get In Touch</a><a>Lagos, Nigeria</a><a>hello@genesisinitiative.org</a></div>
@@ -856,7 +849,7 @@
     <div class="page-hero-content">
       <div class="section-tag" style="color:#555;">Get Involved</div>
       <h1>Step up. Show up. <em>Change a life.</em></h1>
-      <p>Each mentor acts as a guiding North Star — inspiring and shaping a boy into who he is meant to be. Your experience, wisdom, and time are exactly what this generation needs.</p>
+      <p>Each mentor acts as a guiding North Star inspiring and shaping a boy into who he is meant to be. Your experience, wisdom, and time are exactly what this generation needs.</p>
     </div>
   </div>
 
@@ -875,7 +868,7 @@
     <div class="role-content active" id="content-mentor">
       <div class="role-details">
         <h3>Become a Mentor</h3>
-        <p>As a mentor, you commit to a structured one-on-one relationship with a boy aged 10–25, walking with him through our five-module curriculum and life itself. You become his North Star — a steady, consistent presence he can look to for guidance, challenge, and encouragement.</p>
+        <p>As a mentor, you commit to a structured one-on-one relationship with a boy aged 10–16, walking with him through our five-module curriculum and life itself. You become his North Star — a steady, consistent presence he can look to for guidance, challenge, and encouragement.</p>
         <p>Mentors meet with their mentees regularly, work through the Genesis curriculum together, and check in with our programme coordinators. This is a relationship of depth — not convenience — and it is the most powerful thing you can offer a young man.</p>
         <p>Through a structured curriculum, mentors empower boys to grow into confident, purpose-driven men who contribute meaningfully to society.</p>
         <div class="role-reqs">
@@ -887,23 +880,11 @@
             <li>A heart for young people and a stable personal lifestyle</li>
             <li>Availability to meet 2–4 hours per month</li>
             <li>A genuine desire to shape the next generation</li>
+            <button class="btn-accent" onclick="window.open('https://docs.google.com/forms/d/e/1FAIpQLSeq8_rdK7YYiiEDQot_sm_phYjfPj1S-7d1z0tQVNfI2qHIIQ/viewform?usp=preview', '_blank');" style="width:100%;padding:16px;font-family:'DM Sans',sans-serif;font-size:13px;letter-spacing:1px;">Apply Now</button>
           </ul>
         </div>
       </div>
-      <div class="role-form-wrap">
-        <h4>Apply to Become a Mentor</h4>
-        <div class="form-success" id="mentor-success">✓ Application received! We'll review and contact you within 5 business days.</div>
-        <div class="form-row">
-          <div><label>First Name</label><input type="text" placeholder="John"></div>
-          <div><label>Last Name</label><input type="text" placeholder="Doe"></div>
-        </div>
-        <div class="form-group"><label>Email Address</label><input type="email" placeholder="john@example.com"></div>
-        <div class="form-group"><label>Phone Number</label><input type="tel" placeholder="+234 800 000 0000"></div>
-        <div class="form-group"><label>Your Occupation</label><input type="text" placeholder="e.g. Engineer, Pastor, Business Owner"></div>
-        <div class="form-group"><label>Age</label><input type="text" placeholder="e.g. 32"></div>
-        <div class="form-group"><label>Why do you want to be a mentor?</label><textarea placeholder="Share what motivates you to invest in the next generation…" style="height:100px;"></textarea></div>
-        <button class="btn-accent" onclick="submitForm('mentor-success')" style="width:100%;padding:16px;font-family:'DM Sans',sans-serif;font-size:13px;letter-spacing:1px;">Submit Application</button>
-      </div>
+    
     </div>
 
     <div class="role-content" id="content-volunteer">
@@ -923,29 +904,9 @@
           </ul>
         </div>
       </div>
-      <div class="role-form-wrap">
         <h4>Sign Up to Volunteer</h4>
-        <div class="form-success" id="volunteer-success">✓ Thanks for signing up! We'll be in touch with upcoming opportunities.</div>
-        <div class="form-row">
-          <div><label>First Name</label><input type="text" placeholder="Jane"></div>
-          <div><label>Last Name</label><input type="text" placeholder="Smith"></div>
-        </div>
-        <div class="form-group"><label>Email Address</label><input type="email" placeholder="jane@example.com"></div>
-        <div class="form-group"><label>Phone Number</label><input type="tel" placeholder="+234 800 000 0000"></div>
-        <div class="form-group">
-          <label>Primary Area of Interest</label>
-          <select>
-            <option>Events &amp; Coordination</option>
-            <option>Content &amp; Social Media</option>
-            <option>Fundraising</option>
-            <option>Facilitation &amp; Speaking</option>
-            <option>Design &amp; Photography</option>
-            <option>Admin &amp; Operations</option>
-          </select>
-        </div>
-        <div class="form-group"><label>Tell us about yourself</label><textarea placeholder="Your skills, experience, and availability…" style="height:100px;"></textarea></div>
-        <button class="btn-accent" onclick="submitForm('volunteer-success')" style="width:100%;padding:16px;font-family:'DM Sans',sans-serif;font-size:13px;letter-spacing:1px;">Sign Up to Volunteer</button>
-      </div>
+        <button class="btn-accent" onclick="window.open('https://docs.google.com/forms/d/e/1FAIpQLSeq8_rdK7YYiiEDQot_sm_phYjfPj1S-7d1z0tQVNfI2qHIIQ/viewform?usp=preview', '_blank');" style="width:100%;padding:16px;font-family:'DM Sans',sans-serif;font-size:13px;letter-spacing:1px;">Volunteer Application → Google Form</button>
+        <p style="margin-top:12px;font-size:12px;color:#666;line-height:1.6;">We'll be in touch with upcoming opportunities that match your skills.</p>
     </div>
   </div>
 
@@ -961,7 +922,7 @@
 
   <footer>
     <div class="footer-grid">
-      <div class="footer-brand"><div class="logo">The <span>Genesis</span> Initiative</div><p>Connecting boys aged 10–25 with positive male role models who inspire, guide, and equip the next generation to thrive.</p><div class="footer-social"><a>in</a><a>tw</a><a>ig</a><a>fb</a></div></div>
+      <div class="footer-brand"><div class="logo">The <span>Genesis</span> Initiative</div><p>Connecting boys aged 10–16 with positive male role models who inspire, guide, and equip the next generation to thrive.</p><div class="footer-social"><a>in</a><a>tw</a><a>ig</a><a>fb</a></div></div>
       <div class="footer-col"><h5>Navigate</h5><a onclick="showPage('home')">Home</a><a onclick="showPage('about')">About Us</a><a onclick="showPage('blog')">Blog</a><a onclick="showPage('newsletter')">Newsletter</a></div>
       <div class="footer-col"><h5>Get Involved</h5><a onclick="showPage('join'); switchTab('mentor')">Become a Mentor</a><a onclick="showPage('join'); switchTab('volunteer')">Volunteer</a><a onclick="showToast('Thank you!')">Donate</a><a onclick="showPage('contact')">Partner With Us</a></div>
       <div class="footer-col"><h5>Contact</h5><a onclick="showPage('contact')">Get In Touch</a><a>Lagos, Nigeria</a><a>hello@genesisinitiative.org</a></div>
@@ -999,15 +960,15 @@
     <div class="issues-grid">
       <div class="issue-card">
         <div class="issue-top"><div class="issue-num">#003</div><div class="issue-tag">The Tactical Man</div></div>
-        <div class="issue-body"><h4>What Football Teaches Us About Life That the Classroom Can't</h4><p>A deep dive into our Strategy, Discipline &amp; Team Dynamics module — and why football is one of the best laboratories for real-world success.</p><div class="issue-date">March 1, 2025</div></div>
+        <div class="issue-body"><h4>What Football Teaches Us About Life That the Classroom Can't</h4><p>A deep dive into our Strategy, Discipline &amp; Team Dynamics module and why football is one of the best laboratories for real-world success.</p><div class="issue-date">March 1, 2025</div></div>
       </div>
       <div class="issue-card">
         <div class="issue-top"><div class="issue-num">#002</div><div class="issue-tag">The Inner Man</div></div>
-        <div class="issue-body"><h4>Identity Before Achievement: Why We Start With Who, Not What</h4><p>Exploring our Spirituality &amp; Identity module — and why a boy who knows who he is will never be ruled by what he doesn't have.</p><div class="issue-date">February 1, 2025</div></div>
+        <div class="issue-body"><h4>Identity Before Achievement: Why We Start With Who, Not What</h4><p>Exploring our Spirituality &amp; Identity module and why a boy who knows who he is will never be ruled by what he doesn't have.</p><div class="issue-date">February 1, 2025</div></div>
       </div>
       <div class="issue-card">
         <div class="issue-top"><div class="issue-num">#001</div><div class="issue-tag">The Outer Man</div></div>
-        <div class="issue-body"><h4>The Character Crisis: Why Good Ethics Are the Foundation of Everything</h4><p>Our first issue — an introduction to Character Development and why we believe behaviour is the ultimate measure of a man.</p><div class="issue-date">January 1, 2025</div></div>
+        <div class="issue-body"><h4>The Character Crisis: Why Good Ethics Are the Foundation of Everything</h4><p>Our first issue an introduction to Character Development and why we believe behaviour is the ultimate measure of a man.</p><div class="issue-date">January 1, 2025</div></div>
       </div>
     </div>
   </section>
@@ -1042,7 +1003,7 @@
 
   <footer>
     <div class="footer-grid">
-      <div class="footer-brand"><div class="logo">The <span>Genesis</span> Initiative</div><p>Connecting boys aged 10–25 with positive male role models who inspire, guide, and equip the next generation to thrive.</p><div class="footer-social"><a>in</a><a>tw</a><a>ig</a><a>fb</a></div></div>
+      <div class="footer-brand"><div class="logo">The <span>Genesis</span> Initiative</div><p>Connecting boys aged 10–16 with positive male role models who inspire, guide, and equip the next generation to thrive.</p><div class="footer-social"><a>in</a><a>tw</a><a>ig</a><a>fb</a></div></div>
       <div class="footer-col"><h5>Navigate</h5><a onclick="showPage('home')">Home</a><a onclick="showPage('about')">About Us</a><a onclick="showPage('blog')">Blog</a><a onclick="showPage('newsletter')">Newsletter</a></div>
       <div class="footer-col"><h5>Get Involved</h5><a onclick="showPage('join'); switchTab('mentor')">Become a Mentor</a><a onclick="showPage('join'); switchTab('volunteer')">Volunteer</a><a onclick="showToast('Thank you!')">Donate</a><a onclick="showPage('contact')">Partner With Us</a></div>
       <div class="footer-col"><h5>Contact</h5><a onclick="showPage('contact')">Get In Touch</a><a>Lagos, Nigeria</a><a>hello@genesisinitiative.org</a></div>
@@ -1178,7 +1139,7 @@
 
   <footer>
     <div class="footer-grid">
-      <div class="footer-brand"><div class="logo">The <span>Genesis</span> Initiative</div><p>Connecting boys aged 10–25 with positive male role models who inspire, guide, and equip the next generation to thrive.</p><div class="footer-social"><a>in</a><a>tw</a><a>ig</a><a>fb</a></div></div>
+      <div class="footer-brand"><div class="logo">The <span>Genesis</span> Initiative</div><p>Connecting boys aged 10–16 with positive male role models who inspire, guide, and equip the next generation to thrive.</p><div class="footer-social"><a>in</a><a>tw</a><a>ig</a><a>fb</a></div></div>
       <div class="footer-col"><h5>Navigate</h5><a onclick="showPage('home')">Home</a><a onclick="showPage('about')">About Us</a><a onclick="showPage('blog')">Blog</a><a onclick="showPage('newsletter')">Newsletter</a></div>
       <div class="footer-col"><h5>Get Involved</h5><a onclick="showPage('join'); switchTab('mentor')">Become a Mentor</a><a onclick="showPage('join'); switchTab('volunteer')">Volunteer</a><a onclick="showToast('Thank you!')">Donate</a><a onclick="showPage('contact')">Partner With Us</a></div>
       <div class="footer-col"><h5>Contact</h5><a onclick="showPage('contact')">Get In Touch</a><a>Lagos, Nigeria</a><a>hello@genesisinitiative.org</a></div>
