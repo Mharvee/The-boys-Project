@@ -18,6 +18,8 @@
   html { scroll-behavior: smooth; }
   body { font-family: 'DM Sans', sans-serif; color: var(--black); background: var(--white); overflow-x: hidden; }
 
+  
+  
   /* ─── NAV ─── */
   nav {
     position: fixed; top: 0; left: 0; right: 0; z-index: 100;
@@ -26,6 +28,7 @@
     background: rgba(10,10,10,0.97);
     backdrop-filter: blur(12px);
     border-bottom: 1px solid #1a1a1a;
+    top: 30px;
   }
   .nav-logo {
     font-family: 'Playfair Display', serif;
@@ -424,8 +427,26 @@
 </head>
 <body>
 
+  <div id="top-bar" style="
+  position: fixed; top: 0; left: 0; right: 0; z-index: 101;
+  background: #000; color: #fff;
+  display: flex; justify-content: center; align-items: center; gap: 20px;
+  padding: 10px 80px; font-family: 'DM Sans', sans-serif;
+  font-size: 13px; font-weight: 600; letter-spacing: 0.5px;
+">
+  <a href="landingpage.html" style="
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  color: inherit;
+">
+  THE BOYS PROJECT EVENT →
+</a>
+  <span onclick="document.getElementById('top-bar').style.display='none'; document.getElementById('main-nav').style.top='0'; document.querySelectorAll('.page').forEach(p => p.style.paddingTop='72px');"
+    style="position: absolute; right: 24px; cursor: pointer; font-size: 18px; opacity: 0.6;">×</span>
+</div>
 <nav id="main-nav">
-  <span class="nav-logo" onclick="showPage('home')">The <span>Genesis</span> Initiative</span>
+<span class="nav-logo" onclick="showPage('home')"><img src="logo.png" alt="The Genesis Initiative" style="height: 170px; width: auto; vertical-align: middle;"></span>
   <div class="nav-links" id="nav-links">
     <a onclick="showPage('home')" class="active" data-page="home">Home</a>
     <a onclick="showPage('about')" data-page="about">About Us</a>
@@ -551,13 +572,6 @@
           <li>Communication &amp; The Rule of Law</li>
         </ul>
       </div>
-      <div class="program-card" style="background:var(--black);cursor:pointer;" onclick="showPage('join'); switchTab('mentor')">
-        <span class="program-icon">⭐</span>
-        <h3 style="color:var(--white);">Become a North Star</h3>
-        <div class="prog-subtitle">Mentors Wanted</div>
-        <p style="color:#777;">Every boy in this programme is paired with a dedicated mentor — a guiding North Star who walks with him through the curriculum and through life.</p>
-        <span style="display:inline-flex;align-items:center;gap:8px;margin-top:24px;font-size:12px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--accent);">Apply to Mentor →</span>
-      </div>
     </div>
   </section>
 
@@ -607,7 +621,7 @@
       <div class="footer-brand"><div class="logo">The <span>Genesis</span> Initiative</div><p>Connecting boys aged 10–16 with positive male role models who inspire, guide, and equip the next generation to thrive.</p><div class="footer-social"><a>in</a><a>tw</a><a>ig</a><a>fb</a></div></div>
       <div class="footer-col"><h5>Navigate</h5><a onclick="showPage('home')">Home</a><a onclick="showPage('about')">About Us</a><a onclick="showPage('blog')">Blog</a><a onclick="showPage('newsletter')">Newsletter</a></div>
       <a onclick="window.open('https://docs.google.com/forms/d/e/1FAIpQLScvZETuo-mpBEHc5RxDTjtEBRSAVmr8i9Lum-8nQpTovciDQA/viewform?usp=preview', '_blank');">Donate</a>
-      <div class="footer-col"><h5>Contact</h5><a onclick="showPage('contact')">Get In Touch</a><a>Lagos, Nigeria</a><a>hello@genesisinitiative.org</a></div>
+      <div class="footer-col"><h5>Contact</h5><a onclick="showPage('contact')">Get In Touch</a><a>Lagos, Nigeria</a><a>info@genesisinitiative.org</a></div>
     </div>
     <div class="footer-bottom"><p>© 2025 The Genesis Initiative. All rights reserved.</p><div class="footer-bottom-links"><a>Privacy Policy</a><a>Terms of Service</a></div></div>
   </footer>
@@ -620,7 +634,7 @@
   <div class="page-hero">
     <div class="page-hero-content">
       <div class="section-tag" style="color:#555;">Our Story</div>
-      <h1>We exist because every boy deserves a <em>North Star</em></h1>
+      <h1>We Exist to Shape <em>Boys</em> Into <em>Men</em> Of Character</h1>
       <p>The Genesis Initiative was born from a simple but urgent truth: too many boys are navigating the most critical years of their lives without guidance, without models, without direction.</p>
     </div>
   </div>
@@ -638,8 +652,8 @@
       <h2>A generation in need of direction</h2>
       <p>The Genesis Initiative was designed in response to the growing lack of positive male role models in society. We recognised the vital role boys play in shaping the future — and the crisis created when they are left to navigate it alone.</p>
       <blockquote>"The most dangerous thing in society is a young man without a purpose."</blockquote>
-      <p>Through lessons on self-esteem, leadership, purpose, emotional intelligence, relationships, and more, Project Genesis shapes boys into well-rounded, confident, and responsible men. Men who can impact their families, workplaces, communities, and culture.</p>
-      <p>Boys aged 10–16 are paired with mentors who act as guiding North Stars — helping them navigate life and discover their potential through a structured, five-pillar curriculum.</p>
+      <p>Through lessons on self-esteem, leadership, purpose, emotional intelligence, relationships, and more, The Genesis Initiative shapes boys into well-rounded, confident, and responsible men. Men who can impact their families, workplaces, communities, and culture.</p>
+      <p>Boys aged 10–16 are paired with mentors who act as guiding North Stars helping them navigate life and discover their potential through a structured, five-pillar curriculum.</p>
       <span class="btn-dark" onclick="showPage('join')" style="cursor:pointer;display:inline-block;margin-top:8px;">Get Involved</span>
     </div>
     <div class="about-img-stack">
@@ -653,9 +667,9 @@
     <h2>Our Core Values</h2>
     <div class="values-grid">
       <div class="value-card"><div class="value-icon">🧭</div><h4>Integrity</h4><p>We build cultures of honesty in every relationship we facilitate — between mentors, mentees, and our communities.</p></div>
-      <div class="value-card"><div class="value-icon">🤝</div><h4>Commitment</h4><p>Mentorship is not casual. We train mentors to be present, consistent, and deeply invested in their mentees over the long term.</p></div>
+      <div class="value-card"><div class="value-icon">🤝</div><h4>Commitment</h4><p>Mentorship is not casual. Mentors need to be present, consistent, and deeply invested in their mentees over the long term.</p></div>
       <div class="value-card"><div class="value-icon">💡</div><h4>Purpose</h4><p>Every boy has a reason for being here. We create environments where they can discover and boldly pursue it.</p></div>
-      <div class="value-card"><div class="value-icon">🌱</div><h4>Growth</h4><p>Growth is continuous — for the boys we serve and the mentors who serve them. We never stop learning.</p></div>
+      <div class="value-card"><div class="value-icon">🌱</div><h4>Growth</h4><p>Growth is continuous for the boys we serve and the mentors who serve them. We never stop learning.</p></div>
     </div>
   </section>
 
@@ -739,7 +753,7 @@
         <div class="curr-num" style="color:#555;">THE MENTOR</div>
         <h3 style="color:var(--white);">The North Star</h3>
         <div class="curr-sub">Every Boy Deserves One</div>
-        <p style="color:#666;">Each boy is paired with a mentor who walks alongside him through the curriculum — and through life. Become the guiding light for a young man who needs you.</p>
+        <p style="color:#666;">Each boy is paired with a mentor who walks alongside him through the curriculum and through life. Become the guiding light for a young man who needs you.</p>
         <span style="display:inline-flex;align-items:center;gap:8px;margin-top:24px;font-size:12px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--accent);">Apply to Mentor →</span>
       </div>
     </div>
@@ -868,8 +882,8 @@
     <div class="role-content active" id="content-mentor">
       <div class="role-details">
         <h3>Become a Mentor</h3>
-        <p>As a mentor, you commit to a structured one-on-one relationship with a boy aged 10–16, walking with him through our five-module curriculum and life itself. You become his North Star — a steady, consistent presence he can look to for guidance, challenge, and encouragement.</p>
-        <p>Mentors meet with their mentees regularly, work through the Genesis curriculum together, and check in with our programme coordinators. This is a relationship of depth — not convenience — and it is the most powerful thing you can offer a young man.</p>
+        <p>As a mentor, you commit to a structured one-on-one relationship with a boy aged 10–16, walking with him through our five-module curriculum and life itself. You become his North Star a steady, consistent presence he can look to for guidance, challenge, and encouragement.</p>
+        <p>Mentors meet with their mentees regularly, work through the Genesis curriculum together, and check in with our programme coordinators. This is a relationship of depth not convenience — and it is the most powerful thing you can offer a young man.</p>
         <p>Through a structured curriculum, mentors empower boys to grow into confident, purpose-driven men who contribute meaningfully to society.</p>
         <div class="role-reqs">
           <h5>What We're Looking For</h5>
@@ -938,8 +952,8 @@
   <div class="newsletter-hero">
     <div>
       <div class="section-tag" style="color:#555;">Stay Connected</div>
-      <h2>The <em>North Star</em> Newsletter</h2>
-      <p>Monthly insights on mentorship, character, purpose, and raising the next generation of strong, responsible men — delivered straight to your inbox.</p>
+      <h2>Newsletter</h2>
+      <p>Monthly insights on mentorship, character, purpose, and raising the next generation of strong, responsible men delivered straight to your inbox.</p>
       <div class="newsletter-form-hero">
         <input type="email" placeholder="Enter your email address" id="nl-email">
         <button onclick="subscribeNewsletter()">Subscribe Free</button>
@@ -947,7 +961,7 @@
       <p style="margin-top:14px; font-size:12px; color:#444; line-height:1.6;">No spam, ever. Unsubscribe anytime.<br>Join readers, mentors, parents, and leaders across Africa.</p>
     </div>
     <div class="newsletter-perks">
-      <div class="newsletter-perk"><div class="perk-icon">📖</div><div class="perk-text"><h5>Monthly Deep Dives</h5><p>One focused topic explored from every angle — practical, theological, and philosophical.</p></div></div>
+      <div class="newsletter-perk"><div class="perk-icon">📖</div><div class="perk-text"><h5>Monthly Deep Dives</h5><p>One focused topic explored from every angle practical, theological, and philosophical.</p></div></div>
       <div class="newsletter-perk"><div class="perk-icon">🎙️</div><div class="perk-text"><h5>Mentor Spotlights</h5><p>Real stories of transformation from mentors and mentees inside the Genesis programme.</p></div></div>
       <div class="newsletter-perk"><div class="perk-icon">📌</div><div class="perk-text"><h5>Resources &amp; Tools</h5><p>Curated reads, conversation starters, and practical tools for mentors and parents.</p></div></div>
       <div class="newsletter-perk"><div class="perk-icon">🗓️</div><div class="perk-text"><h5>Programme Updates</h5><p>First access to Genesis Initiative workshops, events, and new curriculum announcements.</p></div></div>
@@ -972,30 +986,10 @@
       </div>
     </div>
   </section>
-
-  <section class="testimonials-section">
-    <div class="section-tag center">What Readers Say</div>
-    <h2>Trusted by Mentors, Parents &amp; Leaders</h2>
-    <div class="testimonials-row">
-      <div class="testimonial">
-        <p>"The North Star newsletter has made me a better mentor. The depth of thinking is unlike anything else I receive in my inbox."</p>
-        <div class="testimonial-author"><div class="testimonial-avatar">K</div><div><div class="testimonial-author-name">Kwame Asante</div><div class="testimonial-author-role">Mentor, Accra</div></div></div>
-      </div>
-      <div class="testimonial">
-        <p>"As a father of three boys, the language and frameworks in this newsletter are ones I use in conversations at home every single week."</p>
-        <div class="testimonial-author"><div class="testimonial-avatar">E</div><div><div class="testimonial-author-name">Emmanuel Nwosu</div><div class="testimonial-author-role">Father &amp; Reader, Lagos</div></div></div>
-      </div>
-      <div class="testimonial">
-        <p>"The mentor spotlight features moved me deeply. Real stories of real transformation. I've shared them across my entire team."</p>
-        <div class="testimonial-author"><div class="testimonial-avatar">A</div><div><div class="testimonial-author-name">Amara Diallo</div><div class="testimonial-author-role">Programme Director, Dakar</div></div></div>
-      </div>
-    </div>
-  </section>
-
   <section class="cta" style="background:var(--black);">
     <div class="section-tag center" style="color:#444;">Never Miss an Issue</div>
     <h2 style="color:var(--white);">Ready to grow with us?</h2>
-    <p style="color:#666;">Join the North Star community — mentors, fathers, leaders, and anyone invested in raising the next generation right.</p>
+    <p style="color:#666;">Join the community mentors, fathers, leaders, and anyone invested in raising the next generation right.</p>
     <div class="cta-actions">
       <button class="btn-accent" onclick="subscribeNewsletter()" style="font-family:'DM Sans',sans-serif;">Subscribe Free</button>
     </div>
@@ -1129,7 +1123,7 @@
     <div class="blog-nl-inner">
       <div class="section-tag center">Never Miss a Post</div>
       <h2>Get new articles in your inbox every month</h2>
-      <p>Subscribe to the North Star newsletter for our latest writing plus exclusive monthly deep dives into what it means to raise a generation of men with character.</p>
+      <p>Subscribe to the  newsletter for our latest writing plus exclusive monthly deep dives into what it means to raise a generation of men with character.</p>
       <div class="blog-nl-form">
         <input type="email" placeholder="Your email address">
         <button class="btn-dark" onclick="subscribeNewsletter()" style="white-space:nowrap;font-family:'DM Sans',sans-serif;padding:16px 24px;font-size:13px;letter-spacing:1px;">Subscribe</button>
@@ -1173,7 +1167,7 @@
   }
 
   function subscribeNewsletter() {
-    showToast('✓ You\'re subscribed to the North Star!');
+    showToast('✓ You\'re subscribed to the newsletter!');
   }
 
   function showToast(msg) {

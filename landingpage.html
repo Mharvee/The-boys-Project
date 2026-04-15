@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Boys Project — A Genesis Initiative Event</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:wght@300;400;500;600&family=Bebas+Neue&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --bp-gold: #FFD700;
+    --bp-gold-dim: rgba(255,215,0,0.12);
+    --bp-bg: #080808;
+    --bp-surface: #111111;
+    --bp-surface-2: #181818;
+    --bp-border: #222222;
+    --bp-muted: #aaaaaa;
+    --white: #ffffff;
+    --accent: #c8a96e;
+  }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'DM Sans', sans-serif; color: var(--white); background: var(--bp-bg); overflow-x: hidden; }
+
+  /* ─── NAV ─── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 101;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 0 80px; height: 72px;
+    background: rgba(8,8,8,0.97);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid #1a1a1a;
+  }
+  .nav-logo {
+    font-family: 'Playfair Display', serif; font-size: 18px; font-weight: 900;
+    color: var(--white); text-decoration: none; letter-spacing: 1px;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .nav-logo .sep { color: #333; font-weight: 300; font-size: 20px; }
+  .nav-logo .bp-name { color: var(--bp-gold); font-family: 'Bebas Neue', sans-serif; font-size: 22px; letter-spacing: 2px; }
+  .nav-links { display: flex; align-items: center; gap: 32px; }
+  .nav-links a {
+    font-size: 13px; font-weight: 500; letter-spacing: 0.5px;
+    color: #888; text-decoration: none; transition: color 0.2s;
+    cursor: pointer;
+  }
+  .nav-links a:hover { color: var(--white); }
+  .nav-links a.active { color: var(--bp-gold); }
+  .nav-back {
+    display: flex; align-items: center; gap: 8px;
+    font-size: 12px; font-weight: 600; letter-spacing: 1px;
+    text-transform: uppercase; color: #555 !important;
+    text-decoration: none; transition: color 0.2s !important;
+    border-left: 1px solid #222; padding-left: 32px;
+  }
+  .nav-back:hover { color: var(--bp-gold) !important; }
+  .nav-register {
+    background: var(--bp-gold); color: #000 !important;
+    padding: 10px 24px; font-size: 12px !important; font-weight: 700 !important;
+    letter-spacing: 1px; text-transform: uppercase; border-radius: 40px;
+    transition: opacity 0.2s !important;
+  }
+  .nav-register:hover { opacity: 0.85; color: #000 !important; }
+  .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; }
+  .hamburger span { width: 24px; height: 1.5px; background: var(--white); display: block; transition: all 0.3s; }
+
+  /* ─── TOAST ─── */
+  .toast { position: fixed; bottom: 32px; right: 32px; background: #111; color: var(--white); padding: 16px 24px; font-size: 14px; box-shadow: 0 8px 32px rgba(0,0,0,0.5); z-index: 9999; transform: translateY(80px); opacity: 0; transition: all 0.4s ease; border-left: 3px solid var(--bp-gold); }
+  .toast.show { transform: translateY(0); opacity: 1; }
+
+  /* ─── BP HERO ─── */
+  .bp-hero {
+    position: relative; height: 100vh;
+    display: flex; align-items: center; justify-content: center;
+    overflow: hidden; background: var(--bp-bg);
+  }
+  .bp-hero-bg {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%;
+    object-fit: cover; z-index: 1;
+  }
+  .bp-hero-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.55) 60%, rgba(8,8,8,1) 100%);
+    z-index: 2;
+  }
+  .bp-hero-content {
+    position: relative; z-index: 3;
+    text-align: center; max-width: 760px; padding: 0 24px;
+    animation: fadeUp 0.9s ease both;
+  }
+  .bp-event-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(255,215,0,0.12); border: 1px solid rgba(255,215,0,0.3);
+    border-radius: 40px; padding: 8px 20px;
+    font-size: 12px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase;
+    color: var(--bp-gold); margin-bottom: 28px;
+  }
+  .bp-hero-content h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(60px, 10vw, 112px);
+    letter-spacing: 4px; line-height: 0.95;
+    margin-bottom: 20px; color: var(--white);
+  }
+  .bp-hero-content h1 span { color: var(--bp-gold); }
+  .bp-hero-content p {
+    font-size: 1.1rem; color: #ccc; margin-bottom: 36px;
+    max-width: 520px; margin-left: auto; margin-right: auto; line-height: 1.6;
+  }
+  .bp-hero-actions { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+  .bp-btn {
+    display: inline-block; padding: 15px 36px;
+    background: var(--bp-gold); color: #000;
+    font-weight: 700; font-size: 0.95rem;
+    text-decoration: none; border-radius: 40px;
+    letter-spacing: 0.5px; transition: opacity 0.2s;
+    border: none; cursor: pointer; font-family: 'DM Sans', sans-serif;
+  }
+  .bp-btn:hover { opacity: 0.85; }
+  .bp-btn-outline {
+    display: inline-block; padding: 15px 36px;
+    background: transparent; color: var(--white);
+    font-weight: 600; font-size: 0.95rem;
+    text-decoration: none; border-radius: 40px;
+    border: 1px solid rgba(255,255,255,0.25);
+    letter-spacing: 0.5px; transition: all 0.2s;
+    cursor: pointer; font-family: 'DM Sans', sans-serif;
+  }
+  .bp-btn-outline:hover { border-color: var(--bp-gold); color: var(--bp-gold); }
+
+  /* Register dropdown */
+  .bp-register-wrap { position: relative; display: inline-block; }
+  .bp-register-dropdown {
+    display: none; position: absolute;
+    top: calc(100% + 8px); left: 50%;
+    transform: translateX(-50%);
+    background: #111; border: 1px solid #333;
+    border-radius: 12px; overflow: hidden;
+    min-width: 220px; z-index: 10;
+  }
+  .bp-register-dropdown a {
+    display: block; padding: 14px 20px;
+    color: #fff; text-decoration: none;
+    font-size: 0.9rem; font-weight: 500;
+    transition: background 0.15s;
+    font-family: 'DM Sans', sans-serif;
+    border-bottom: 1px solid #1a1a1a;
+  }
+  .bp-register-dropdown a:last-child { border-bottom: none; }
+  .bp-register-dropdown a:hover { background: #1a1a1a; color: var(--bp-gold); }
+
+  /* Scroll indicator */
+  .bp-scroll {
+    position: absolute; bottom: 48px; left: 50%; transform: translateX(-50%);
+    z-index: 3; display: flex; flex-direction: column; align-items: center; gap: 8px;
+    color: #555; font-size: 11px; letter-spacing: 2px; text-transform: uppercase;
+  }
+  .bp-scroll-line { width: 1px; height: 40px; background: linear-gradient(to bottom, #555, transparent); }
+
+  /* ─── SECTIONS ─── */
+  .bp-section { padding: 100px 24px; }
+  .bp-section-inner { max-width: 960px; margin: 0 auto; }
+  .bp-label {
+    font-size: 0.72rem; font-weight: 700; letter-spacing: 4px; text-transform: uppercase;
+    color: var(--bp-gold); margin-bottom: 12px;
+    display: flex; align-items: center; justify-content: center; gap: 12px;
+  }
+  .bp-label::before, .bp-label::after { content: ''; flex: 1; max-width: 40px; height: 1px; background: rgba(255,215,0,0.3); }
+  .bp-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(40px, 5vw, 64px);
+    letter-spacing: 3px; margin-bottom: 16px;
+    color: var(--white); text-align: center;
+  }
+  .bp-divider { width: 56px; height: 3px; background: var(--bp-gold); margin: 0 auto 32px; }
+  .bp-lead {
+    font-size: 1.05rem; color: var(--bp-muted); max-width: 640px;
+    margin: 0 auto 48px; line-height: 1.75; text-align: center;
+  }
+
+  /* About */
+  .bp-about { background: var(--bp-bg); }
+  .bp-vm-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin: 0 auto; max-width: 720px; }
+  .bp-vm-card {
+    background: var(--bp-surface); border: 1px solid var(--bp-border);
+    border-radius: 16px; padding: 32px;
+    transition: border-color 0.3s;
+  }
+  .bp-vm-card:hover { border-color: rgba(255,215,0,0.3); }
+  .bp-vm-card h4 { color: var(--bp-gold); font-size: 0.72rem; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 12px; }
+  .bp-vm-card p { color: var(--bp-muted); font-size: 0.97rem; line-height: 1.6; }
+
+  /* Details */
+  .bp-details { background: var(--bp-surface); border-top: 1px solid var(--bp-border); border-bottom: 1px solid var(--bp-border); }
+  .bp-details-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 40px; }
+  .bp-detail-card {
+    background: var(--bp-bg); border: 1px solid var(--bp-border);
+    border-radius: 16px; padding: 40px 24px; text-align: center;
+    transition: border-color 0.3s, transform 0.3s;
+  }
+  .bp-detail-card:hover { border-color: rgba(255,215,0,0.3); transform: translateY(-4px); }
+  .bp-detail-card .icon { font-size: 2.2rem; margin-bottom: 16px; }
+  .bp-detail-card .dlabel { font-size: 0.68rem; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--bp-gold); margin-bottom: 8px; }
+  .bp-detail-card .value { font-size: 1.1rem; font-weight: 600; color: var(--white); line-height: 1.3; }
+
+  /* Curriculum */
+  .bp-curriculum { background: var(--bp-bg); }
+  .bp-curr-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 40px; }
+  .bp-curr-card {
+    background: var(--bp-surface); border: 1px solid var(--bp-border);
+    border-radius: 16px; padding: 32px; position: relative; overflow: hidden;
+    transition: border-color 0.3s;
+  }
+  .bp-curr-card:hover { border-color: rgba(255,215,0,0.25); }
+  .bp-curr-card::before {
+    content: ''; position: absolute; top: 0; left: 0;
+    width: 4px; height: 100%; background: var(--bp-gold);
+    border-radius: 4px 0 0 4px;
+  }
+  .bp-curr-card .num {
+    font-family: 'Bebas Neue', sans-serif; font-size: 3.5rem;
+    color: rgba(255,215,0,0.08); line-height: 1; margin-bottom: 8px;
+  }
+  .bp-curr-card h4 { font-size: 0.72rem; font-weight: 700; color: var(--bp-gold); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 6px; }
+  .bp-curr-card .subtitle { font-size: 1.05rem; font-weight: 600; color: var(--white); margin-bottom: 12px; }
+  .bp-curr-card p { font-size: 0.9rem; color: var(--bp-muted); line-height: 1.6; }
+  .bp-curr-card.full-width { grid-column: 1 / -1; }
+
+  /* Speakers */
+  .bp-speakers { background: var(--bp-surface); border-top: 1px solid var(--bp-border); }
+  .bp-speakers-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin-top: 40px; }
+  .bp-speaker-card {
+    background: var(--bp-bg); border: 1px solid var(--bp-border);
+    border-radius: 16px; padding: 36px 20px; text-align: center;
+    transition: border-color 0.2s, transform 0.3s;
+  }
+  .bp-speaker-card:hover { border-color: var(--bp-gold); transform: translateY(-4px); }
+  .bp-speaker-avatar {
+    width: 80px; height: 80px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 2rem; margin: 0 auto 18px;
+    background: rgba(255,215,0,0.08);
+    border: 1px solid rgba(255,215,0,0.15);
+  }
+  .bp-speaker-card .role { font-size: 0.68rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--bp-gold); margin-bottom: 8px; }
+  .bp-speaker-card .name { font-size: 1rem; font-weight: 600; color: var(--white); }
+
+  /* CTA */
+  .bp-cta { background: var(--bp-bg); text-align: center; }
+  .bp-cta p { color: var(--bp-muted); max-width: 520px; margin: 0 auto 40px; font-size: 1.05rem; line-height: 1.7; }
+
+  /* Footer */
+  .bp-footer {
+    background: var(--bp-surface); border-top: 1px solid var(--bp-border);
+    text-align: center; padding: 32px 24px;
+    color: var(--bp-muted); font-size: 0.85rem;
+  }
+  .bp-footer a { color: var(--bp-gold); text-decoration: underline; text-underline-offset: 3px; cursor: pointer; }
+  .bp-footer a:hover { opacity: 0.7; }
+
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 900px) {
+    nav { padding: 0 24px; }
+    .nav-links { display: none; }
+    .nav-links.open {
+      display: flex; flex-direction: column;
+      position: fixed; top: 72px; left: 0; right: 0; bottom: 0;
+      background: #080808; padding: 40px 24px; gap: 0; z-index: 99; overflow-y: auto;
+    }
+    .nav-links.open a { padding: 18px 0; border-bottom: 1px solid #1a1a1a; font-size: 15px; }
+    .nav-back { border-left: none; padding-left: 0; padding-top: 24px; margin-top: 8px; }
+    .hamburger { display: flex; }
+    .bp-vm-grid, .bp-curr-grid, .bp-details-grid { grid-template-columns: 1fr; }
+    .bp-curr-card.full-width { grid-column: auto; }
+    .bp-speakers-grid { grid-template-columns: 1fr 1fr; }
+    .bp-section { padding: 70px 16px; }
+  }
+  @media (max-width: 480px) {
+    .bp-speakers-grid { grid-template-columns: 1fr; }
+    .bp-hero-actions { flex-direction: column; align-items: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ─── NAV ─── -->
+<nav id="main-nav">
+  <a class="nav-logo" href="index.html">
+    <img src="logo.png" alt="The Boys Project Logo" style="height: 170px; vertical-align: middle;">
+
+    <span class="sep">/</span>
+    <span class="bp-name">The Boys Project</span>
+  </a>
+</nav>
+    <span class="bp-name">The Boys Project</span>
+  </a>
+  <div class="nav-links" id="nav-links">
+    <a href="#about">About</a>
+    <a href="#details">Event Details</a>
+    <a href="#curriculum">Programme</a>
+    <a href="#speakers">Speakers</a>
+    <a href="index.html" class="nav-back">← Genesis Initiative</a>
+    <a href="https://docs.google.com/forms/d/e/1FAIpQLSef52l04v9OQgP06BoFHT1E1VvSUM7AshlNTUsqMPOGTY6XoQ/viewform?usp=preview" target="_blank" class="nav-register">Register</a>
+  </div>
+  <div class="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></div>
+</nav>
+
+<div class="toast" id="toast"></div>
+
+<!-- ─── HERO ─── -->
+<section class="bp-hero">
+  <img src="landingpage.jpeg" class="bp-hero-bg" alt="The Boys Project">
+</section>
+
+<!-- ─── ABOUT ─── -->
+<section class="bp-section bp-about" id="about">
+  <div class="bp-section-inner" style="text-align:center;">
+    <p class="bp-label">About the Event</p>
+    <h2 class="bp-title">Shaping Boys into Men</h2>
+    <div class="bp-divider"></div>
+    <p class="bp-lead">The world is changing, and the need for positive male role models has never been greater. Through a structured curriculum led by mentors acting as a <em style="color:var(--bp-gold)">North Star</em>, we shape boys into well-rounded, confident, and purpose-driven men.</p>
+    <div class="bp-vm-grid">
+      <div class="bp-vm-card"><h4>Vision</h4><p>To inspire boys to uncover their true identity and fulfill their God-given purpose.</p></div>
+      <div class="bp-vm-card"><h4>Mission</h4><p>To cultivate boys into men of character who positively influence society and raise future generations of strong, responsible men.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── DETAILS ─── -->
+<section class="bp-section bp-details" id="details">
+  <div class="bp-section-inner" style="text-align:center;">
+    <p class="bp-label">Mark Your Calendar</p>
+    <h2 class="bp-title">Event Details</h2>
+    <div class="bp-divider"></div>
+    <div class="bp-details-grid">
+      <div class="bp-detail-card"><div class="icon">📅</div><div class="dlabel">Date</div><div class="value">16 May, 2026</div></div>
+      <div class="bp-detail-card"><div class="icon">📍</div><div class="dlabel">Location</div><div class="value">The Covenant Place, Iganmu</div></div>
+      <div class="bp-detail-card"><div class="icon">👦</div><div class="dlabel">Audience</div><div class="value">Boys aged 10–16</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── CURRICULUM ─── -->
+<section class="bp-section bp-curriculum" id="curriculum">
+  <div class="bp-section-inner" style="text-align:center;">
+    <p class="bp-label">The Programme</p>
+    <h2 class="bp-title">What We Will Cover</h2>
+    <div class="bp-divider"></div>
+    <div class="bp-curr-grid">
+      <div class="bp-curr-card"><div class="num">01</div><h4>Character Development</h4><div class="subtitle">The Outer Man</div><p>Bullying &amp; Peer Pressure, Resilience, Leadership, Integrity.</p></div>
+      <div class="bp-curr-card"><div class="num">02</div><h4>Spirituality &amp; Identity</h4><div class="subtitle">The Inner Man</div><p>New Creation Reality, Priesthood, Believer's Love Walk.</p></div>
+      <div class="bp-curr-card"><div class="num">03</div><h4>Emotional Intelligence</h4><div class="subtitle">The Relational Man</div><p>Self-awareness, Empathy, Social Skills, Handling Feedback.</p></div>
+      <div class="bp-curr-card"><div class="num">04</div><h4>Family, Relationships &amp; Health</h4><div class="subtitle">The Future Man</div><p>Mental Health, Understanding the Other Gender, Healthy Relationships.</p></div>
+      <div class="bp-curr-card full-width"><div class="num">05</div><h4>Strategy, Discipline &amp; Team Dynamics</h4><div class="subtitle">The Tactical Man</div><p>Football as a model for life: Positioning, Discipline, Communication &amp; The Rule of Law.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── SPEAKERS ─── -->
+<section class="bp-section bp-speakers" id="speakers">
+  <div class="bp-section-inner" style="text-align:center;">
+    <p class="bp-label">The Panel</p>
+    <h2 class="bp-title">Meet the Speakers</h2>
+    <div class="bp-divider"></div>
+    <p class="bp-lead">Our experienced panel of mentors and speakers are gearing up to pour into the next generation with insights, wisdom, and tough love.</p>
+    <div class="bp-speakers-grid">
+      <div class="bp-speaker-card"><div class="bp-speaker-avatar">🎙️</div><p class="role">Lead Mentor</p><p class="name">Speaker TBA</p></div>
+      <div class="bp-speaker-card"><div class="bp-speaker-avatar">📖</div><p class="role">Identity Coach</p><p class="name">Speaker TBA</p></div>
+      <div class="bp-speaker-card"><div class="bp-speaker-avatar">⚽</div><p class="role">Life Skills Coach</p><p class="name">Speaker TBA</p></div>
+      <div class="bp-speaker-card"><div class="bp-speaker-avatar">🧠</div><p class="role">Wellness Mentor</p><p class="name">Speaker TBA</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── CTA ─── -->
+<section class="bp-section bp-cta" id="register">
+  <div class="bp-section-inner" style="text-align:center;">
+    <p class="bp-label">Get Involved</p>
+    <h2 class="bp-title">Join Us</h2>
+    <div class="bp-divider"></div>
+    <p>Help us shape the leaders of tomorrow. Be part of a day of <em style="color:var(--bp-gold)">transformation, mentorship, and purpose</em>.</p>
+    <div class="bp-register-wrap" id="bpRegisterWrap2">
+      <button class="bp-btn" onclick="toggleBpDropdown('bpRegisterDropdown2')">Register Now ▾</button>
+      <div class="bp-register-dropdown" id="bpRegisterDropdown2">
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLSeq8_rdK7YYiiEDQot_sm_phYjfPj1S-7d1z0tQVNfI2qHIIQ/viewform?usp=preview" target="_blank">Register as a Volunteer</a>
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLSef52l04v9OQgP06BoFHT1E1VvSUM7AshlNTUsqMPOGTY6XoQ/viewform?usp=preview" target="_blank">Register as a Parent</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── FOOTER ─── -->
+<div class="bp-footer">
+  <p>© 2026 The Boys Project &nbsp;·&nbsp; A <a href="index.html">Genesis Initiative</a> event &nbsp;·&nbsp; <a href="index.html#contact">Contact Us</a></p>
+</div>
+
+<script>
+  function toggleBpDropdown(id) {
+    const d = document.getElementById(id);
+    const isOpen = d.style.display === 'block';
+    // Close all dropdowns first
+    document.querySelectorAll('.bp-register-dropdown').forEach(el => el.style.display = 'none');
+    d.style.display = isOpen ? 'none' : 'block';
+  }
+
+  document.addEventListener('click', function(e) {
+    if (!e.target.closest('.bp-register-wrap')) {
+      document.querySelectorAll('.bp-register-dropdown').forEach(el => el.style.display = 'none');
+    }
+  });
+
+  function toggleMenu() {
+    document.getElementById('nav-links').classList.toggle('open');
+  }
+
+  // Smooth scroll for anchor links
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', function(e) {
+      e.preventDefault();
+      const target = document.querySelector(this.getAttribute('href'));
+      if (target) target.scrollIntoView({ behavior: 'smooth' });
+      document.getElementById('nav-links').classList.remove('open');
+    });
+  });
+
+  // Active nav link on scroll
+  const sections = document.querySelectorAll('section[id]');
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(s => {
+      if (window.scrollY >= s.offsetTop - 100) current = s.id;
+    });
+    document.querySelectorAll('.nav-links a[href^="#"]').forEach(a => {
+      a.classList.toggle('active', a.getAttribute('href') === '#' + current);
+    });
+  });
+</script>
+</body>
+</html>
